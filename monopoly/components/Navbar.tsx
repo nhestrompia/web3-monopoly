@@ -2,35 +2,117 @@
 
 import { truncateAddress } from "@/app/utils";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { useSetActiveWallet } from "@privy-io/wagmi";
-import { Menu, Wallet, X } from "lucide-react";
+import { Copy, LogOut, Menu, Wallet, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useAccount } from "wagmi";
 import { ModeToggle } from "./ModeToggle";
+import { Avatar, AvatarFallback } from "./ui/avatar";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import { Label } from "./ui/label";
 
 interface INavbar {}
 
 const Navbar: React.FC<INavbar> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { toast } = useToast();
   const { ready, authenticated, connectWallet, login } = usePrivy();
   console.log("🚀 ~ authenticated:", authenticated);
   const { wallets, ready: walletsReady } = useWallets();
   const { setActiveWallet } = useSetActiveWallet();
-  const { isConnected } = useAccount();
+  const { isConnected, address } = useAccount();
+
+  const copyAddress = () => {
+    navigator.clipboard.writeText(address!);
+    toast({
+      title: "Succesful",
+      description: "Address copied successfully",
+      //   action: (
+      //     <ToastAction altText="Check on etherscan">
+      //       <a
+      //         target="_blank"
+      //         href={`https://sepolia.etherscan.io/address/${address}`}
+      //       >
+      //         Check on Etherscan
+      //       </a>
+      //     </ToastAction>
+      //   ),
+    });
+    // You might want to add a toast notification here
+  };
+
+  const disconnect = () => {
+    // Implement your disconnect logic here
+    setIsDialogOpen(false);
+  };
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const renderWallet = (wallet: any) => (
-    <div
-      key={wallet.address}
-      className="flex min-w-full flex-row flex-wrap items-center justify-between gap-2  p-4"
-    >
-      <div>{truncateAddress(wallet.address)}</div>
-      <Button onClick={() => setActiveWallet(wallet)} />
-    </div>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <DialogTrigger asChild>
+        <Button variant="reverse" className="flex items-center space-x-2">
+          <Avatar className="h-6 w-6">
+            {/* <AvatarImage src={avatarUrl} alt="User avatar" /> */}
+            <AvatarFallback>
+              <Wallet className="h-4 w-4" />
+            </AvatarFallback>
+          </Avatar>
+          <span className="text-sm font-medium">
+            {truncateAddress(wallet.address)}
+          </span>
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Wallet Information</DialogTitle>
+          <DialogDescription>
+            Your current wallet details are displayed below.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="address" className="text-right">
+              Address
+            </Label>
+            <div id="address" className="col-span-3 truncate font-mono text-sm">
+              {address}
+            </div>
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="balance" className="text-right">
+              Balance
+            </Label>
+            <div id="balance" className="col-span-3 font-mono text-sm">
+              {/* {balance} */}
+            </div>
+          </div>
+        </div>
+        <DialogFooter className="flex justify-between">
+          <Button variant="reverse" onClick={copyAddress}>
+            <Copy className="mr-2 h-4 w-4" />
+            Copy Address
+          </Button>
+          <Button variant="default" onClick={disconnect}>
+            <LogOut className="mr-2 h-4 w-4" />
+            Disconnect
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+    //
   );
 
   const renderWalletButton = () => {
