@@ -19,9 +19,11 @@ export default class Server implements Party.Server {
   onMessage(message: string, sender: Party.Connection) {
     // let's log the message
     console.log(`connection ${sender.id} sent message: ${message}`);
+
     // as well as broadcast it to all the other connections in the room...
     this.room.broadcast(
-      `${sender.id}: ${message}`,
+      // `${sender.id}: ${message}`,
+      message,
       // ...except for the connection it came from
       [sender.id]
     );
