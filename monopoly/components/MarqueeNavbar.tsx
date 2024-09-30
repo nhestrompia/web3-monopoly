@@ -46,7 +46,7 @@ export default function MarqueeNavbar() {
   }, []);
 
   const NavContent = () => (
-    <div className="relative w-full fixed h-full overflow-hidden">
+    <div className="relative w-full  h-full overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-16 flex justify-center items-center bg-yellow-300 border-b-4 border-black">
         <Marquee gradient={false} speed={50}>
           {links.map((link, index) => (

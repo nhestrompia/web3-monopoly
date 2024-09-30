@@ -9,7 +9,7 @@ export default function MainMenu() {
   const [isCreatingGame, setIsCreatingGame] = useState(false);
   const [isJoinGame, setIsJoinGame] = useState(false);
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-yellow-300 font-mono">
+    <div className="relative  w-full overflow-hidden bg-yellow-300 ">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -19,10 +19,15 @@ export default function MainMenu() {
         }}
       />
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center p-4">
-        <h1 className="mb-8 text-center text-6xl font-black uppercase tracking-tighter text-purple-800 shadow-hard">
-          Table Game
-        </h1>
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="mb-8 flex gap-12 text-center text-7xl font-black uppercase tracking-tighter text-purple-800 shadow-hard">
+          <p>
+            Ta<span className="stretch mx-5 mr-2">b</span> le
+          </p>{" "}
+          <p>
+            <span className="stretch mr-7">G</span>ame
+          </p>
+        </div>
+        <div style={{ display: "" }} className="grid gap-6 sm:grid-cols-2">
           <Button
             onClick={() => {
               if (isCreatingGame) {

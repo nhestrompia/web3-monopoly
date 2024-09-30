@@ -76,3 +76,11 @@ body {
     @apply bg-background text-foreground;
   } */
 }
+
+.stretch {
+  display: inline-block;
+  -webkit-transform: scale(2, 1);
+  -moz-transform: scale(2, 1);
+  -o-transform: scale(2, 1);
+  transform: scale(2, 1);
+}
