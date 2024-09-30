@@ -18,7 +18,7 @@ const rooms: Room[] = [
 
 export default function RoomList() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 z-0">
       <h2 className="text-4xl font-black uppercase tracking-tighter text-purple-800 shadow-hard">
         Join a Room
       </h2>
