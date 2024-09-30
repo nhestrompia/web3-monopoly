@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import MarqueeNavbar from "@/components/MarqueeNavbar";
 import Providers from "@/components/Providers";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
@@ -44,7 +44,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Providers>
-            <Navbar />
+            {/* <Navbar /> */}
+            <MarqueeNavbar />
             {children}
           </Providers>
           <Toaster />

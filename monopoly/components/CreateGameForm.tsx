@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -25,6 +26,7 @@ const formSchema = z.object({
 
 export default function CreateGameForm() {
   const { toast } = useToast();
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,6 +43,7 @@ export default function CreateGameForm() {
       title: "Game Created!",
       description: `Game "${values.gameName}" has been created successfully.`,
     });
+    router.push(`/game/${values.gameName}`);
     console.log(values);
   }
 
