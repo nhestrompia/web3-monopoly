@@ -44,9 +44,13 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Providers>
-            {/* <Navbar /> */}
-            <MarqueeNavbar />
-            {children}
+            <div className="relative ">
+              <MarqueeNavbar />
+            </div>
+
+            <main className=" h-[100vh] flex justify-center items-center  p-8">
+              {children}
+            </main>
           </Providers>
           <Toaster />
         </ThemeProvider>

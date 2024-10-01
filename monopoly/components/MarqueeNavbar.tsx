@@ -163,8 +163,8 @@ export default function MarqueeNavbar() {
 
   const NavContent = () => (
     <div className="relative w-full  h-full overflow-hidden ">
-      <div className="absolute top-0 left-0 w-full h-16 flex gap-4 justify-center items-center bg-yellow-300 border-b-4 border-black">
-        <Marquee className=" " autoFill gradient={false} speed={50}>
+      <div className="absolute top-0 left-0 w-full h-16 pointer-events-auto flex gap-4 justify-center items-center bg-yellow-300 border-b-4 border-black">
+        <Marquee className="h-16 " autoFill gradient={false} speed={50}>
           {/* {links.map((link, index) => (
             <NavLink key={`top-${index}`} link={link} />
           ))} */}
@@ -174,7 +174,7 @@ export default function MarqueeNavbar() {
           <div className="px-4">{renderWalletButton()}</div>
         </Marquee>
       </div>
-      <div className="absolute top-16 right-0 w-32 h-[calc(100%-32px)] bg-yellow-300 border-l-4 border-black">
+      <div className="absolute top-16 right-0 w-32 pointer-events-auto h-[calc(100%-32px)] bg-yellow-300 border-l-4 border-black">
         {/* <Marquee autoFill gradient={false} speed={30} direction="up">
           {links.map((link, index) => (
             <div
@@ -186,7 +186,7 @@ export default function MarqueeNavbar() {
           ))}
         </Marquee> */}
       </div>
-      <div className="absolute bottom-0 left-0 z-10 w-full h-16 flex gap-4 justify-center items-center bg-yellow-300 border-t-4 border-black">
+      <div className="absolute bottom-0 left-0 pointer-events-auto z-10 w-full h-16 flex gap-4 justify-center items-center bg-yellow-300 border-t-4 border-black">
         <Marquee
           autoFill
           className="h-16"
@@ -200,7 +200,7 @@ export default function MarqueeNavbar() {
           <div className="px-4">{renderWalletButton()}</div>
         </Marquee>
       </div>
-      <div className="absolute top-16 left-0 w-32 h-[calc(100%-32px)] bg-yellow-300 border-r-4 border-black">
+      <div className="absolute top-16 left-0 pointer-events-auto w-32 h-[calc(100%-32px)] bg-yellow-300 border-r-4 border-black">
         {/* <Marquee gradient={false} speed={30} direction="down">
           {links.map((link, index) => (
             <div
@@ -216,7 +216,7 @@ export default function MarqueeNavbar() {
   );
 
   return (
-    <nav className="fixed inset-0  pointer-events-none overflow-hidden">
+    <nav className="fixed inset-0  overflow-hidden">
       {isMobile ? (
         <Sheet>
           <SheetTrigger asChild>

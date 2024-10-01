@@ -10,7 +10,7 @@ export default function MainMenu() {
   const [isCreatingGame, setIsCreatingGame] = useState(false);
   const [isJoinGame, setIsJoinGame] = useState(false);
   return (
-    <div className="relative z-30 w-full flex justify-center items-center overflow-hidden bg-yellow-300 ">
+    <div className="relative h-[50vh] w-full flex justify-center items-center overflow-hidden bg-yellow-300 ">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
