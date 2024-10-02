@@ -1,10 +1,11 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
+import useSupabaseBrowser from "@/lib/supabase-browser";
+import { Room } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -24,7 +25,21 @@ const formSchema = z.object({
   entryWager: z.number().min(0).optional(),
 });
 
+function generateRandomString(length: number): string {
+  const characters = "abcdefghijklmnopqrstuvwxyz0123456789"; // Characters to choose from
+  let result = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters[randomIndex];
+  }
+  console.log("result", result);
+
+  return result;
+}
+
 export default function CreateGameForm() {
+  const supabase = useSupabaseBrowser();
   const { toast } = useToast();
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -38,14 +53,53 @@ export default function CreateGameForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    toast({
-      title: "Game Created!",
-      description: `Game "${values.gameName}" has been created successfully.`,
-    });
-    router.push(`/game/${values.gameName}`);
-    console.log(values);
-  }
+  const createRoom = async (values: z.infer<typeof formSchema>) => {
+    const data = await supabase
+      .from("rooms")
+      .insert({
+        room_id: generateRandomString(8),
+        room_name: values.gameName,
+        password: values.hasPassword ? values.password : null,
+        wager: values.hasEntryWager ? values.entryWager : 0,
+        active: true, // Default active status
+        users: {
+          id: 123123123,
+          wallet_address: "adasdasdasda",
+        }, // Empty user list on creation
+      })
+      .select()
+      .single();
+
+    if (data.error) {
+      throw new Error(data.error.message);
+    }
+
+    return data.data;
+  };
+
+  const createRoomMutation = useMutation({
+    mutationFn: createRoom,
+    onSuccess: (data: Room) => {
+      console.log("createdroom", data);
+
+      toast({
+        title: "Game Created!",
+        description: `Game "${data?.room_name}" has been created successfully.`,
+      });
+      router.push(`/game/${data?.room_id}`);
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message,
+      });
+    },
+  });
+
+  // Handle form submission
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    createRoomMutation.mutate(values); // Trigger the mutation with form values
+  };
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
