@@ -13,8 +13,8 @@ export default function Board() {
     );
   };
   return (
-    <div className="w-full max-w-2xl mx-auto p-4">
-      <div className="aspect-square">
+    <div className=" h-[80vh] relative  max-w-2xl mx-auto ">
+      <div className="aspect-square h-[80vh]">
         <div className="grid grid-cols-6 grid-rows-6 h-full border-4 border-black bg-green-100">
           {properties.map((property, index) => {
             const isCorner = property.type === "corner";

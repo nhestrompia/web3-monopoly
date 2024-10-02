@@ -36,7 +36,7 @@ export default function MainMenu() {
                 Join Room
               </Button>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="min-w-fit">
               <RoomList />
             </DialogContent>
           </Dialog>
