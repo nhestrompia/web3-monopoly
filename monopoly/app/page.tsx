@@ -1,13 +1,14 @@
 "use client";
-import MainMenu from "@/components/MainMenu";
+import { BackgroundBeams } from "@/components/BackgroundBeam";
 
 export default function Home() {
   return (
     <div className="">
-      <MainMenu />
+      {/* <MainMenu /> */}
       {/* <MarqueeNavbar /> */}
       {/* <Board /> */}
       {/* <SocketConnection /> */}
+      <BackgroundBeams />
     </div>
   );
 }
