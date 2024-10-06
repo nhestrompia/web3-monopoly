@@ -4,6 +4,7 @@ import { truncateAddress } from "@/app/utils";
 import { useToast } from "@/hooks/use-toast";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { useSetActiveWallet } from "@privy-io/wagmi";
+import { motion } from "framer-motion";
 import { Copy, LogOut, Menu, Wallet as WalletIcon, X } from "lucide-react";
 import { useState } from "react";
 import { useAccount } from "wagmi";
@@ -57,8 +58,8 @@ const Navbar: React.FC<INavbar> = ({isVertical ,side  }) => {
     const renderWallet = (wallet: any) => (
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
-          <Button variant="reverse" className={`flex transition duration-300 ${side === "left" ? " mt-16" : side === "right" ? "mb-16": ""}
-          ${side === "left" ? "-rotate-90 flex-row" : side === "right" ?  "rotate-[90deg] flex-row" : side === "bottom" ? "" :""}
+          <Button variant="default" className={`flex transition duration-300 ${side === "left" ? " mt-16" : side === "right" ? "mb-16": ""}
+          ${side === "left" ? "-rotate-90 flex-row -ml-8" : side === "right" ?  "rotate-[90deg] flex-row" : side === "bottom" ? "" :""}
           items-center space-x-2`}>
             <Avatar className="h-6 w-6">
               {/* <AvatarImage src={avatarUrl} alt="User avatar" /> */}
@@ -142,14 +143,16 @@ const Navbar: React.FC<INavbar> = ({isVertical ,side  }) => {
             </Link> */}
   
             {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className={`ml-4 flex gap-2 items-center ${isVertical ? " w-20 h-[150px] " : "h-20 w-[150px] "} ${side === "left" ? "flex-col": side === "right" ? "flex-col-reverse": side === "bottom" ? "flex-row" :"flex-row-reverse" }  space-x-4`}>
+            <motion.div className="hidden md:block">
+              <motion.div className={` flex gap-2 items-center ${isVertical ? " w-10 h-[205px] " : "h-10 w-[205px] "} ${side === "left" ? "flex-col ml-4": side === "right" ? "flex-col-reverse -mr-4": side === "bottom" ? "flex-row" :"flex-row-reverse" }  `}
+              layout
+              >
                 <div className="w-10">
                   <ModeToggle />
                 </div>
                 {renderWalletButton()}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
   
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center">

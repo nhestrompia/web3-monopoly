@@ -3,7 +3,7 @@ import { motion, useAnimation } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 
-export const BackgroundBeams = React.memo(
+export const MovingFrame = React.memo(
   ({ className }: { className?: string }) => {
     const controls = useAnimation();
     const [isVertical, setIsVertical] = useState(false); // Track if the path is vertical or horizontal
@@ -15,7 +15,7 @@ export const BackgroundBeams = React.memo(
         setIsVertical(false); // Set to horizontal
         setSide("top")
         await controls.start({
-          x: [0, window.innerWidth - (150)], // 150: Width of the navbar
+          x: [0, window.innerWidth - (205)], // 205: Width of the navbar
           y: [0, 0],
           transition: { duration: 5, ease: "linear" },
         });
@@ -25,7 +25,7 @@ export const BackgroundBeams = React.memo(
         setSide("right")
         await controls.start({
           x: [window.innerWidth - 80, window.innerWidth - 80],
-          y: [0, window.innerHeight - 150], // 80: Height of the navbar
+          y: [0, window.innerHeight - 205], // 80: Height of the navbar
           transition: { duration: 3, ease: "linear" },
         });
 
@@ -33,7 +33,7 @@ export const BackgroundBeams = React.memo(
         setIsVertical(false); // Set to horizontal
         setSide("bottom")
         await controls.start({
-          x: [window.innerWidth - 150, 0],
+          x: [window.innerWidth - 205, 0],
           y: [window.innerHeight - 80, window.innerHeight - 80],
           transition: { duration: 5, ease: "linear" },
         });
@@ -44,7 +44,7 @@ export const BackgroundBeams = React.memo(
 
         await controls.start({
           x: [0, 0],
-          y: [window.innerHeight - 150, 0],
+          y: [window.innerHeight - 205, 0],
           transition: { duration: 3, ease: "linear" },
         });
 
@@ -57,6 +57,41 @@ export const BackgroundBeams = React.memo(
 
     return (
       <div className="absolute  inset-0 h-full w-full">
+            <div className="relative w-full  h-full overflow-hidden ">
+      <div className="absolute top-0 left-0 w-full h-16 pointer-events-auto flex gap-4 justify-center items-center bg-yellow-300 border-b-4 border-black">
+          {/* {links.map((link, index) => (
+            <NavLink key={`top-${index}`} link={link} />
+          ))} */}
+          
+      </div>
+      <div className="absolute top-16 right-0 w-32 pointer-events-auto h-[calc(100%-32px)] bg-yellow-300 border-l-4 border-black">
+        {/* <Marquee autoFill gradient={false} speed={30} direction="up">
+          {links.map((link, index) => (
+            <div
+              key={`right-${index}`}
+              className="my-4 transform -rotate-90 whitespace-nowrap"
+            >
+              <NavLink link={link} />
+            </div>
+          ))}
+        </Marquee> */}
+      </div>
+      <div className="absolute bottom-0 left-0 pointer-events-auto z-10 w-full h-16 flex gap-4 justify-center items-center bg-yellow-300 border-t-4 border-black">
+        
+      </div>
+      <div className="absolute top-16 left-0 pointer-events-auto w-32 h-[calc(100%-32px)] bg-yellow-300 border-r-4 border-black">
+        {/* <Marquee gradient={false} speed={30} direction="down">
+          {links.map((link, index) => (
+            <div
+              key={`left-${index}`}
+              className="my-4 transform -rotate-90 whitespace-nowrap"
+            >
+              <NavLink link={link} />
+            </div>
+          ))}
+        </Marquee> */}
+      </div>
+    </div>
         <svg
           className="z-0 h-full w-full pointer-events-none absolute"
           width="100%"
@@ -102,4 +137,3 @@ export const BackgroundBeams = React.memo(
   }
 );
 
-BackgroundBeams.displayName = "BackgroundBeams";

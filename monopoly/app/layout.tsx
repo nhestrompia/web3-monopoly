@@ -1,3 +1,4 @@
+import { MovingFrame } from "@/components/MovingFrame";
 import Providers from "@/components/Providers";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
@@ -43,9 +44,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Providers>
-            {/* <div className="relative ">
-              <MarqueeNavbar />
-            </div> */}
+            <div className="relative  ">
+              {/* <MarqueeNavbar /> */}
+              <MovingFrame />
+            </div>
 
             <main className=" h-[100vh] flex justify-center items-center  p-8">
               {children}

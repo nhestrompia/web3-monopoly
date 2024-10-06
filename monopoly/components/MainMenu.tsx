@@ -10,7 +10,7 @@ export default function MainMenu() {
   const [isCreatingGame, setIsCreatingGame] = useState(false);
   const [isJoinGame, setIsJoinGame] = useState(false);
   return (
-    <div className="relative h-[50vh] w-full flex justify-center items-center overflow-hidden bg-yellow-300 ">
+    <div className="relative h-[80vh] w-full flex justify-center items-center overflow-hidden bg-yellow-300 ">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -19,7 +19,7 @@ export default function MainMenu() {
           transform: "scale(1.1)",
         }}
       />
-      <div className="relative  flex h-[60vh] mt-32 flex-col items-center justify-center p-4">
+      <div className="relative  flex h-[60vh]  flex-col items-center justify-center p-4">
         <div className="mb-8 flex flex-col lg:flex-row gap-12 text-center text-7xl font-black uppercase tracking-tighter text-purple-800 shadow-hard">
           <p>
             M<span className="stretch mx-5 mr-2">o</span> no
