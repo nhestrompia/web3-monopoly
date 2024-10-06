@@ -113,7 +113,6 @@ export const MovingFrame = React.memo(
           className="absolute   text-white"
         //   style={{ width: isVertical ? "80px" : "150px", height: isVertical ? "150px" : "80px" }} // Adjust the size of the navbar
           animate={controls}
-          layout
         >
           {/* Dynamically adjust flex direction based on whether we're on a vertical or horizontal edge */}
           <motion.div
