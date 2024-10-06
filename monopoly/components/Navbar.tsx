@@ -57,8 +57,8 @@ const Navbar: React.FC<INavbar> = ({isVertical ,side  }) => {
     const renderWallet = (wallet: any) => (
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
-          <Button variant="default" className={`flex transition duration-300 ${side === "left" ? " mt-16" : side === "right" ? "mb-16": ""}
-          ${side === "left" ? "-rotate-90 flex-row -ml-8" : side === "right" ?  "rotate-[90deg] flex-row" : side === "bottom" ? "" :""}
+          <Button variant="default" className={`flex transition duration-300 ease-in-out ${side === "left" ? " mt-16" : side === "right" ? "mb-16": ""}
+          ${side === "left" ? "rotate-[270deg] flex-row " : side === "right" ?  "rotate-[90deg] flex-row" : side === "bottom" ? "" :""}
           items-center space-x-2`}>
             <Avatar className="h-6 w-6">
               {/* <AvatarImage src={avatarUrl} alt="User avatar" /> */}
