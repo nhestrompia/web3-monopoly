@@ -42,7 +42,7 @@ export default function MainMenu() {
           </Dialog>
           <Dialog open={isCreatingGame} onOpenChange={setIsCreatingGame}>
             <DialogTrigger asChild>
-              <Button className="h-24 w-64 rounded-none border-4 border-black bg-pink-400 text-2xl font-bold uppercase text-black shadow-hard transition-transform hover:-translate-y-1 hover:translate-x-1 hover:shadow-none">
+              <Button className="h-24 w-full rounded-none border-4 border-black bg-pink-400 text-2xl font-bold uppercase text-black shadow-hard transition-transform hover:-translate-y-1 hover:translate-x-1 hover:shadow-none">
                 <Gamepad2 className="mr-2 h-8 w-8" />
                 Create Game
               </Button>

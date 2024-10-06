@@ -1,6 +1,5 @@
 "use client";
 import { properties } from "@/constants/properties";
-import Image from "next/image";
 import { useState } from "react";
 import Dice from "./Dice";
 
@@ -65,13 +64,13 @@ export default function Board() {
 
           {/* Center */}
           <div className="col-start-2 col-end-6 row-start-2 row-end-6 flex items-center justify-center">
-            <Image
+            {/* <Image
               src="/placeholder.svg?height=150&width=300"
               alt="Monopoly Logo"
               width={300}
               height={150}
               className="max-w-full max-h-full"
-            />
+            /> */}
             <Dice onRollComplete={handleRollComplete} />
           </div>
         </div>

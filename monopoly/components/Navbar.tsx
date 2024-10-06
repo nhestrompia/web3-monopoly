@@ -84,7 +84,7 @@ const Navbar: React.FC<INavbar> = ({isVertical ,side  }) => {
                 Address
               </Label>
               <div id="address" className="col-span-3 truncate font-mono text-sm">
-                {address}
+              {truncateAddress(wallet.address)}
               </div>
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
