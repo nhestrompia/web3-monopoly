@@ -24,7 +24,7 @@ export const MovingFrame = React.memo(
         setIsVertical(true); // Set to vertical
         setSide("right")
         await controls.start({
-          x: [window.innerWidth - 80, window.innerWidth - 80],
+          x: [window.innerWidth - 60, window.innerWidth - 60],
           y: [0, window.innerHeight - 205], // 80: Height of the navbar
           transition: { duration: 3, ease: "linear" },
         });
@@ -33,8 +33,8 @@ export const MovingFrame = React.memo(
         setIsVertical(false); // Set to horizontal
         setSide("bottom")
         await controls.start({
-          x: [window.innerWidth - 205, 0],
-          y: [window.innerHeight - 80, window.innerHeight - 80],
+          x: [window.innerWidth - 180, 0],
+          y: [window.innerHeight - 60, window.innerHeight - 60],
           transition: { duration: 5, ease: "linear" },
         });
 
